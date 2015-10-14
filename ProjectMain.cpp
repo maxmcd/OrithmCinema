@@ -216,11 +216,11 @@ void ChartInitialization() {
 
 //Main menu used by user
 void MainMenu() {
-    string sInput;				
-    bool bSuccess, bReset;
-    int iChoice, iOptions = 4;
+	string sInput;				
+	bool bSuccess, bReset;
+	int iChoice, iOptions = 4;
 	bReset = true;    
-    
+	
 	while (bReset) {									//Set to an infinite loop until the user choices exit
 		iChoice = 0;									
 		while (iChoice < 1 || iChoice > iOptions) {		//Repeats until a proper choice is made
@@ -253,11 +253,11 @@ void MainMenu() {
 
 //Menu for use after admin login
 void AdminTools() {
-    string sInput;
+	string sInput;
 	double dblTax;
 	bool bReset = true;
-    int iChoice, iOptions = 7;
-    PosTerm pos;									//Activates posterm class for Tax Reassigments
+	int iChoice, iOptions = 7;
+	PosTerm pos;									//Activates posterm class for Tax Reassigments
 
 	while (bReset) {								//Set to an infinite loop until the user choices exit
 		iChoice = 0;
@@ -266,7 +266,7 @@ void AdminTools() {
 			cout << "\n\n Administration Tools \n\n"
 				 << " 1. Adjust pricing per row \n"	
 				 << " 2. Re-initialize pricing \n"
- 				 << " 3. Adjust Tax \n"
+				 << " 3. Adjust Tax \n"
 				 << " 4. Reassign admin credentials \n"
 				 << " 5. Logout of admin \n"
 				 << " 6. Exit \n\n"
@@ -454,27 +454,27 @@ int SeatValidate(int iNum) {
 //Validates any input, used in this program with menu selections
 // validation function accepts the string passed and the number of options to choice from: X (1-X)
 int InputValidate(string sInput, int iMax) {
-    int iTemp;
-    
-    stringstream(sInput) >> iTemp;
-    if ( sInput.length() > 1 ) {
-        cout << "\n Please choose from menu \n";
-        iTemp = 0;
-    } else if ( !isdigit(sInput[0]) ) {
-        cout << "\n Please choose from menu \n";
-        iTemp = 0;
-    } else if ( iTemp < 1 || iTemp > iMax ) {
-        cout << "\n Please choose from menu \n";
-        iTemp = 0;
-    }                       
-    return iTemp;
+	int iTemp;
+	
+	stringstream(sInput) >> iTemp;
+	if ( sInput.length() > 1 ) {
+		cout << "\n Please choose from menu \n";
+		iTemp = 0;
+	} else if ( !isdigit(sInput[0]) ) {
+		cout << "\n Please choose from menu \n";
+		iTemp = 0;
+	} else if ( iTemp < 1 || iTemp > iMax ) {
+		cout << "\n Please choose from menu \n";
+		iTemp = 0;
+	}                       
+	return iTemp;
 }
 
 //Vaildation tests user name and password
 //If failed certain amount of time returns bool value stating unsuccessful else sets as successful
 bool Password() {
 	AdminTerm admin; 
-    string sName;
+	string sName;
 	string sPass;
 	int iAttempts = 4;
 	bool bError = false;								//Resetting error to false
@@ -514,110 +514,110 @@ bool Password() {
 
 //Validation for user to enter correct format of tax information in percentage form.
 double TaxValidation() {
-    string sInput;
-    int iLength, iN, iCount;
-    double dblTemp;
-    bool again = true;
-    
-    while (again) {		//Runs until the user enters number that matches conditions listed below
-        iN = -1;
-        again = false;		
+	string sInput;
+	int iLength, iN, iCount;
+	double dblTemp;
+	bool again = true;
+	
+	while (again) {		//Runs until the user enters number that matches conditions listed below
+		iN = -1;
+		again = false;		
 		cout << "\n Please enter the % of tax in 0.00 format."
 			 << "\n\n Tax %";
-        getline(cin, sInput);
-        system("cls");
-        stringstream(sInput) >> dblTemp;	
-        iLength = sInput.length();				
-        
+		getline(cin, sInput);
+		system("cls");
+		stringstream(sInput) >> dblTemp;	
+		iLength = sInput.length();				
+		
 		if ((iLength < 4) || (iLength > 6)) {		//Checks total length allowing 4 being 0 . 0 0
-            again = true;							//This allows numbers 0.00 through 999.99
-            continue;
-        } else if (sInput[iLength - 3] != '.') {	//Checks to max sure sure user entered a decimal
-            again = true;
-            continue;
-        } while (++iN < iLength) {					//Vaildates only numbers are entered
-            if (isdigit(sInput[iN])) {
-                continue;
-            } else if (iN == (iLength - 3) ) {		
-                continue;
-            } else {
-                again = true;
-                break;
-            }
-        } 
-    } return dblTemp;
+			again = true;							//This allows numbers 0.00 through 999.99
+			continue;
+		} else if (sInput[iLength - 3] != '.') {	//Checks to max sure sure user entered a decimal
+			again = true;
+			continue;
+		} while (++iN < iLength) {					//Vaildates only numbers are entered
+			if (isdigit(sInput[iN])) {
+				continue;
+			} else if (iN == (iLength - 3) ) {		
+				continue;
+			} else {
+				again = true;
+				break;
+			}
+		} 
+	} return dblTemp;
 } 
 
 //Validation for user to enter correct format of prices information.
 double PriceValidate(int iRow) {
-    string sInput;
-    int iLength, iN;
-    double dblTemp;
-    bool again = true;
-    
-    while (again) {		//Runs until the user enters number that matches conditions listed below
-        iN = -1;
-        again = false;
-        cout << "\n Please enter ticket price for row: " << (iRow + 1) << " in 0.00 format: ";
-        getline(cin, sInput);
-        system("cls");
-        stringstream(sInput) >> dblTemp;
-        iLength = sInput.length();
-       
+	string sInput;
+	int iLength, iN;
+	double dblTemp;
+	bool again = true;
+	
+	while (again) {		//Runs until the user enters number that matches conditions listed below
+		iN = -1;
+		again = false;
+		cout << "\n Please enter ticket price for row: " << (iRow + 1) << " in 0.00 format: ";
+		getline(cin, sInput);
+		system("cls");
+		stringstream(sInput) >> dblTemp;
+		iLength = sInput.length();
+	   
 		if (iLength < 4) {							//Checks total length allowing 4 being 0 . 0 0
-            again = true;							//Allows all numbers
-            continue;
-        } else if (sInput[iLength - 3] != '.') {	//Checks to max sure sure user entered a decimal
-            again = true;
-            continue;
-        } while (++iN < iLength) {					//Vaildates only numbers are entered
-            if (isdigit(sInput[iN])) {
-                continue;
-            } else if (iN == (iLength - 3) ) {		
-                continue;
-            } else {
-                again = true;
-                break;
-            }
-        } 
-    } return dblTemp;
+			again = true;							//Allows all numbers
+			continue;
+		} else if (sInput[iLength - 3] != '.') {	//Checks to max sure sure user entered a decimal
+			again = true;
+			continue;
+		} while (++iN < iLength) {					//Vaildates only numbers are entered
+			if (isdigit(sInput[iN])) {
+				continue;
+			} else if (iN == (iLength - 3) ) {		
+				continue;
+			} else {
+				again = true;
+				break;
+			}
+		} 
+	} return dblTemp;
 } 
 
 //Cash Validate checks if user entered money in a correct format
 double CashValidate(double dblTotal) {
-    string sInput;
-    int iLength, iN, iCount;
-    double dblTemp;
-    bool again = true;
-    while (again) {
-        iN = -1;
-        iCount = 0;
-        again = false;
-        cout << "\n Please enter cash to be tendered in 0.00 format."
+	string sInput;
+	int iLength, iN, iCount;
+	double dblTemp;
+	bool again = true;
+	while (again) {
+		iN = -1;
+		iCount = 0;
+		again = false;
+		cout << "\n Please enter cash to be tendered in 0.00 format."
 			 << "\n If a credit card please enter the exact amount after sale completed \n"
 			 << "\n\n  Cash Presented: ";
-        getline(cin, sInput);
-        system("cls");
-        stringstream(sInput) >> dblTemp;
+		getline(cin, sInput);
+		system("cls");
+		stringstream(sInput) >> dblTemp;
 		
 		if (dblTemp < dblTotal) {								//Tests of money given is less than amount given
 				cout << "\n That is not enough your total is:" << dblTotal;
 				again = true;
 			}
-        iLength = sInput.length();
-        while (++iN < iLength) {								//Vaildates only numbers are entered
-            if (isdigit(sInput[iN])) {
-                continue;
-            } else if ( (sInput[iN] == '.') && (iCount < 1) ) {	
-                iCount = 1;
-                continue;
-            } else {
-                again = true;
-                break;
-            }
+		iLength = sInput.length();
+		while (++iN < iLength) {								//Vaildates only numbers are entered
+			if (isdigit(sInput[iN])) {
+				continue;
+			} else if ( (sInput[iN] == '.') && (iCount < 1) ) {	
+				iCount = 1;
+				continue;
+			} else {
+				again = true;
+				break;
+			}
 			
 		}
-    } return dblTemp;
+	} return dblTemp;
 }
 
 void AdminCreation() {
@@ -633,7 +633,7 @@ void AdminCreation() {
 //Each cout is repeated as a outputfile to save to a document in the same fasion
 void GenReport() {
 
-    PosTerm pos;				//Opens Class PosTerm
+	PosTerm pos;				//Opens Class PosTerm
 	pos.setTax();				//Sets tax to active
 	double dblTotalHolder = 0;
 	int iSeatsLeftTotal = 0;
@@ -668,13 +668,13 @@ void GenReport() {
 	}
 
 	cout << "\n\n  Total Seats Sold: " << ((30 * 15) - iSeatsLeftTotal)		//Row Length * Width Length - Seatsleft gives you total seats taken
-	  	 << "\n  Total Seats Left: " << iSeatsLeftTotal
+		 << "\n  Total Seats Left: " << iSeatsLeftTotal
 		 << "\n\n  Tax rate applied %" << (pos.getTax() * 100)				//Times a 100 to account for precentage 
 		 << "\n  Net Profit $" << dblTotalHolder
 		 << "\n  Profit $" << pos.getTotalSale()
 		 << "\n  Total Taxes Collected $" << (pos.getTotalSale() - dblTotalHolder);
 	outputFile << "\n\n  Total Seats Sold: " << ((30 * 15) - iSeatsLeftTotal) 
-	  	 << "\n  Total Seats Left: " << iSeatsLeftTotal
+		 << "\n  Total Seats Left: " << iSeatsLeftTotal
 		 << "\n\n\n  Tax rate applied %" << pos.getTax()
 		 << "\n\n  Total Earned Before Tax $" << dblTotalHolder
 		 << "\n  Total Earned After Tax $" << pos.getTotalSale()
